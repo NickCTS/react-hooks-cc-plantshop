@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from 'react';
 
-function Search() {
+function Search({ onSearch }) {
+  const [query, setQuery] = useState('');
+
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+    onSearch(event.target.value);
+  };
+
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
       <input
-        type="text"
         id="search"
-        placeholder="Type a name to search..."
-        onChange={(e) => console.log("Searching...")}
+        placeholder="Type a name to search..." // Update placeholder here
+        type="text"
+        value={query}
+        onChange={handleChange}
       />
     </div>
   );
